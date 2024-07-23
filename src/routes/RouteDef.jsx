@@ -1,13 +1,10 @@
 import React from 'react';
+import Main from '../pages/Main';
 
 const MainScreens = {
   Main: {
     path: '/',
-    element: '',
-  },
-  Sub: {
-    path: '/sub',
-    element: '',
+    element: <Main />,
   },
 };
 
