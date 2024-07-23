@@ -4,7 +4,6 @@ import useWindowSize from '../hooks/useWindowSize';
 import AppPages from './AppPages';
 
 const ViewArea = styled.section`
-  display: flex;
   width: ${({ width }) => (width ? `${width}px` : `100%`)};
   height: ${({ height }) => (height ? `${height}px` : `100%`)};
 `;

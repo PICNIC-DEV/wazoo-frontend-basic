@@ -1,0 +1,34 @@
+.date-range-picker {
+  .rdrDateRangePickerWrapper {
+    position: absolute;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    left: -210px;
+    top: 100px;
+  }
+
+  .rdrMonth {
+    background-color: #fff;
+  }
+
+  .rdrDayNumber span {
+    color: #333;
+  }
+
+  .rdrDayToday .rdrDayNumber span {
+    color: #fff;
+    background-color: #007bff;
+    border-radius: 50%;
+  }
+
+  .rdrDaySelected .rdrDayNumber span {
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 50%;
+  }
+
+  .rdrDefinedRangesWrapper, .rdrDateDisplayWrapper {
+    display: none; /* 사전 정의된 범위 선택을 숨깁니다. 필요하면 제거하세요. */
+  }
+}
