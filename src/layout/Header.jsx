@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import Calendar from '../components/Calendar';
+import { format } from "date-fns";
 
 const HeaderContainer = styled.header`
   width: 100%;
@@ -26,7 +27,7 @@ const Container = styled.div`
 `;
 //logo section
 const Home = styled.div`
-  width: 120px;
+  width: 70px;
   height: 30px;
 `;
 const LinkLogo = styled(Link)`
@@ -173,17 +174,40 @@ const Header = () => {
     status: false,
     selected: null,
   });
+  const [isDateOpen, setIsDateOpen] = useState(false);
+  const [dateRange, setDateRange] = useState({
+    startDate: new Date(),
+    endDate: new Date(),
+    key: 'selection',
+  });
+  const [searchObj, setSearchObj] = useState({
+    destination: '',
+    startDate: '날짜 선택',
+    endDate: '날짜 선택',
+    guest: null,
+  });
 
   const onSelect = (num) => {
-    console.log(num);
+    setIsDateOpen(false);
+    if ([2, 3].includes(num)) {
+      setIsDateOpen(true);
+    }
     setIsMenuOpen({ ...isMenuOpen, status: true, selected: num });
   };
 
   const handleClickOutside = (event) => {
     if (headerRef.current && !headerRef.current.contains(event.target)) {
       setIsMenuOpen({ ...isMenuOpen, status: false });
+      setIsDateOpen(false);
     }
   };
+
+  const handleDateRange = (ranges) => {
+    setDateRange({ ...dateRange, startDate: ranges.selection.startDate, endDate: ranges.selection.endDate });
+    setSearchObj({ ...searchObj, startDate: format(ranges.selection.startDate, "MM-dd"), endDate: format(ranges.selection.endDate, "MM-dd")});
+  };
+
+  const handleSearchOption = () => {};
 
   useEffect(() => {
     document.addEventListener('click', handleClickOutside);
@@ -206,18 +230,18 @@ const Header = () => {
           <SearchForms $ismenuopen={isMenuOpen}>
             <DestinationSearch $ismenuopen={isMenuOpen} onClick={() => onSelect(1)}>
               <Title>여행지</Title>
-              <DestinationInput placeholder="여행지 검색" />
+              <DestinationInput placeholder="여행지 검색"/>
             </DestinationSearch>
             <DateRange>
               <StartController $ismenuopen={isMenuOpen} onClick={() => onSelect(2)}>
                 <Title>시작일</Title>
-                <Input>날짜 선택</Input>
+                <Input>{searchObj.startDate}</Input>
               </StartController>
               <EndController $ismenuopen={isMenuOpen} onClick={() => onSelect(3)}>
                 <Title>종료일</Title>
-                <Input>날짜 선택</Input>
+                <Input>{searchObj.endDate}</Input>
               </EndController>
-              <Calendar />
+              <Calendar dateRange={dateRange} onChange={handleDateRange} isDateOpen={isDateOpen} />
             </DateRange>
             <GuestInput $ismenuopen={isMenuOpen} onClick={() => onSelect(4)}>
               <InputContainer>
@@ -228,7 +252,11 @@ const Header = () => {
             </GuestInput>
           </SearchForms>
         </SearchControls>
-        <Profile></Profile>
+        <Profile>
+          <div className="icon icon_profile">
+            <svg className="icon-profile" />
+          </div>
+        </Profile>
       </Container>
     </HeaderContainer>
   );

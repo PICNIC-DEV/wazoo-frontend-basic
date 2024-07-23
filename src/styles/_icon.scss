@@ -1,0 +1,9 @@
+@mixin icon($name, $width: 24px, $height: 24px) {
+  width: $width;
+  height: $height;
+  background: no-repeat center/contain url('../assets/icons/#{$name}.svg');
+}
+
+.icon-profile {
+  @include icon('profile_icon', 18px, 24px);
+}

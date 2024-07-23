@@ -1,3 +1,20 @@
+@import './icon.scss';
+
 :root {
   --border-color: #dddddd;
+}
+
+.icon {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &.icon_profile {
+    width: 57px;
+    height: 57px;
+    border-radius: 200px;
+    background: #ececec;
+  }
 }
