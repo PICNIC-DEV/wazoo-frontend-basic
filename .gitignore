@@ -13,11 +13,11 @@ dist-ssr
 *.local
 
 # misc
-# .eslintcache
-# .eslintrc.cjs
-# .prettierrc.json
-# .gitignore
-# vite.config.js
+.eslintcache
+.eslintrc.cjs
+.prettierrc.json
+.gitignore
+vite.config.js
 
 # env
 .env.local

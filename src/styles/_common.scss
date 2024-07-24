@@ -2,6 +2,7 @@
 
 :root {
   --border-color: #dddddd;
+  --primary-color: #27d562;
 }
 
 .icon {
@@ -11,10 +12,19 @@
   align-items: center;
   justify-content: center;
 
-  &.icon_profile {
+  &.profile {
     width: 57px;
     height: 57px;
     border-radius: 200px;
     background: #ececec;
+  }
+  &.count {
+    width: 32px;
+    height: 32px;
+    border-radius: 20px;
+    border: 1px solid var(--gray-20, #d7dbdd);
+    &:hover {
+      background: var(--gray-20, #d7dbdd);
+    }
   }
 }
