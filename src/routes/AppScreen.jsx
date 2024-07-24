@@ -1,4 +1,3 @@
-import React from 'react';
 import styled from 'styled-components';
 import useWindowSize from '../hooks/useWindowSize';
 import AppPages from './AppPages';
