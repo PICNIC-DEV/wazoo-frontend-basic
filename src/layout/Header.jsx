@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { format } from 'date-fns';
 import styled from 'styled-components';
@@ -30,15 +30,11 @@ const Container = styled.div`
 `;
 //logo section
 const Home = styled.div`
-  width: 70px;
+  width: 160px;
   height: 30px;
 `;
 const LinkLogo = styled(Link)`
   text-decoration: none;
-`;
-const Logo = styled.svg`
-  width: 24px;
-  height: 24px;
 `;
 // calender section
 const SearchControls = styled.div`
@@ -198,7 +194,7 @@ const Header = () => {
       baby: 0,
     },
   });
-  const { placePredictions, getPlacePredictions, isPlacePredictionsLoading } = usePlacesService({
+  const { placePredictions, getPlacePredictions } = usePlacesService({
     apiKey: import.meta.env.VITE_GOOGLE_MAPS_API_KEY,
   });
 

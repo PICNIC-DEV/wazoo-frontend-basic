@@ -1,4 +1,3 @@
-import React from 'react';
 import styled from 'styled-components';
 
 const Container = styled.div`
@@ -21,7 +20,7 @@ const Item = styled.div`
   line-height: 40px;
   border-radius: 15px;
   &:hover {
-    background: #EBEBEB;
+    background: #ebebeb;
   }
 `;
 const Title = styled.div`
@@ -41,20 +40,25 @@ const SubTitle = styled.div`
 `;
 
 const List = (props) => {
-  const items = props.items
-  const isVisible = props.isDestinationOpen
+  const items = props.items;
+  const isVisible = props.isDestinationOpen;
   return (
     <>
-      { (isVisible && items.length > 0) &&
+      {isVisible && items.length > 0 && (
         <Container>
           {items.map((item, index) => (
-            <Item key={index} onClick={() => {props.onSelect(item.structured_formatting.main_text)}}>
+            <Item
+              key={index}
+              onClick={() => {
+                props.onSelect(item.structured_formatting.main_text);
+              }}
+            >
               <Title>{item.structured_formatting.main_text}</Title>
               <SubTitle>{item.structured_formatting.secondary_text}</SubTitle>
-              </Item>
+            </Item>
           ))}
         </Container>
-      }
+      )}
     </>
   );
 };

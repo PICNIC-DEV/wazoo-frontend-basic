@@ -28,7 +28,8 @@
     border-radius: 50%;
   }
 
-  .rdrDefinedRangesWrapper, .rdrDateDisplayWrapper {
+  .rdrDefinedRangesWrapper,
+  .rdrDateDisplayWrapper {
     display: none; /* 사전 정의된 범위 선택을 숨깁니다. 필요하면 제거하세요. */
   }
 }
