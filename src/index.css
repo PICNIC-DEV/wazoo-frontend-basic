@@ -8,8 +8,10 @@ body {
 input,
 h1,
 h2,
-header {
+header,
+p {
   padding: 0;
+  margin: 0;
 }
 
 input:focus {

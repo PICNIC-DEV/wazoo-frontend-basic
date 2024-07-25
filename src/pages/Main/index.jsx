@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import KakaoMap from '../../components/KakaoMap';
+import Card from '../../components/Card';
 
 const MainPage = styled.div`
   padding-top: 32px;
@@ -24,12 +25,98 @@ const MapContainer = styled.div`
   width: 50%;
 `;
 const CardContainer = styled.div`
+  display: grid;
+  grid-template-columns: 33% 33% 33%;
   padding-left: 32px;
   width: 50%;
+  max-height: calc(100% - 12px);
+  overflow-y: auto;
 `;
 
 const index = () => {
   const isResult = false;
+  const cardList = [
+    {
+      name: '신혜민',
+      address: '경기도 남양주시',
+      cost: 1,
+    },
+    {
+      name: '박주광',
+      address: '경기도 화성시',
+      cost: 1,
+    },
+    {
+      name: '조동희',
+      address: '대전광역시',
+      cost: 1,
+    },
+    {
+      name: '박시은',
+      address: '경기도 안양시',
+      cost: 1,
+    },
+    {
+      name: '진명인',
+      address: '서울특별시',
+      cost: 1,
+    },
+    {
+      name: '류금정',
+      address: '대구광역시',
+      cost: 1,
+    },
+    {
+      name: '류금정',
+      address: '대구광역시',
+      cost: 1,
+    },
+    {
+      name: '류금정',
+      address: '대구광역시',
+      cost: 1,
+    },
+    {
+      name: '류금정',
+      address: '대구광역시',
+      cost: 1,
+    },
+    {
+      name: '류금정',
+      address: '대구광역시',
+      cost: 1,
+    },
+    {
+      name: '류금정',
+      address: '대구광역시',
+      cost: 1,
+    },
+    {
+      name: '류금정',
+      address: '대구광역시',
+      cost: 1,
+    },
+    {
+      name: '류금정',
+      address: '대구광역시',
+      cost: 1,
+    },
+    {
+      name: '류금정',
+      address: '대구광역시',
+      cost: 1,
+    },
+    {
+      name: '류금정',
+      address: '대구광역시',
+      cost: 1,
+    },
+    {
+      name: '류금정',
+      address: '대구광역시',
+      cost: 1,
+    },
+  ];
 
   return (
     <MainPage>
@@ -38,7 +125,11 @@ const index = () => {
         <MapContainer>
           <KakaoMap />
         </MapContainer>
-        <CardContainer></CardContainer>
+        <CardContainer>
+          {cardList.map((item, index) => (
+            <Card key={'card-' + index} info={item} />
+          ))}
+        </CardContainer>
       </ScreenSection>
     </MainPage>
   );
