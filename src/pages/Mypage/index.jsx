@@ -24,6 +24,10 @@ const Image = styled.div`
   flex-shrink: 0;
   border-radius: 200px;
   background: var(--gray-20, #d7dbdd);
+  cursor: pointer;
+  &:hover {
+    opacity: 0.5;
+  }
 `;
 
 const TextBoxInfo = styled.div`
@@ -276,6 +280,11 @@ const ContainerChatDateInfo = styled.div`
   justify-content: center;
   margin-top: 6px;
   margin-bottom: 6px;
+
+  cursor: pointer;
+  &:hover {
+    opacity: 0.5;
+  }
 `;
 
 const TextLabelChatDay = styled.span`
@@ -313,6 +322,11 @@ const ButtonGetChatList = styled.div`
   font-style: normal;
   font-weight: 700;
   line-height: normal;
+
+  cursor: pointer;
+  &:hover {
+    opacity: 0.5;
+  }
 `;
 
 const Line = styled.div`
@@ -370,6 +384,11 @@ const ContainerReviewCard = styled.div`
 
   /* drop-shadow */
   box-shadow: 0px 0px 4px 4px rgba(0, 0, 0, 0.16);
+
+  cursor: pointer;
+  &:hover {
+    opacity: 0.5;
+  }
 `;
 
 const TextReviewScript = styled.div`
