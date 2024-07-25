@@ -1,4 +1,6 @@
+import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
+import { showModal } from '../redux/slice';
 
 const Container = styled.div`
   padding: 10px;
@@ -55,8 +57,14 @@ const Cost = styled.p`
 `;
 
 const Card = ({ info }) => {
+  const dispatch = useDispatch();
+
+  const handleShowModal = () => {
+    dispatch(showModal({ modalType: 'GuideInfo', item: info }));
+  };
+
   return (
-    <Container>
+    <Container onClick={handleShowModal}>
       <ImageContainer>
         <svg className="icon-picture" />
       </ImageContainer>
