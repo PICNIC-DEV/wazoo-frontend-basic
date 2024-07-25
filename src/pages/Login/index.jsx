@@ -86,7 +86,6 @@ const ButtonStyleLogin = styled.button`
   border-radius: 30px;
   border-color: #27d562;
   background: var(--primary, #27d562);
-  /* background-color: #27d562; */
   color: #fff;
   font-family: Pretendard;
   font-size: 20px;
