@@ -46,12 +46,10 @@ const KakaoMap = () => {
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition((pos) => {
-      console.log(pos);
       setLoacation({ lat: pos.coords.latitude, lng: pos.coords.longitude });
     });
 
     navigator.geolocation.watchPosition((pos) => {
-      console.log(pos);
       setPosition({ lat: pos.coords.latitude, lng: pos.coords.longitude });
     });
   }, []);
