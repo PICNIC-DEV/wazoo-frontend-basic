@@ -8,7 +8,7 @@ const MainPage = styled.div`
   height: calc(100% - 132px);
 `;
 const Notification = styled.span`
-  color: var(--gray-100, #374957);
+  color: var(--primary-dark-color);
   font-size: 20px;
   font-style: normal;
   font-weight: 700;
@@ -33,7 +33,7 @@ const CardContainer = styled.div`
   overflow-y: auto;
 `;
 
-const index = () => {
+const Index = () => {
   const isResult = false;
   const cardList = [
     {
@@ -135,4 +135,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default Index;

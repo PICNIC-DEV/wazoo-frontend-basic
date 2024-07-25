@@ -59,7 +59,7 @@ const CostContainer = styled.div`
   flex-direction: column;
   gap: 10px;
   border-radius: 8px;
-  border: 1px solid var(--gray-20, #d7dbdd);
+  border: 1px solid var(--primary-light-gray);
   background: #fff;
   box-shadow: 0px 0px 4px 4px rgba(0, 0, 0, 0.04);
   margin-top: 30px;
