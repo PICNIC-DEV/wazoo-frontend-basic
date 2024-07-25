@@ -19,3 +19,6 @@
 .icon-logo {
   @include icon('logo_icon', 160px, 32px);
 }
+.icon-picture {
+  @include icon('picture_icon', 55px, 55px);
+}
