@@ -31,6 +31,7 @@ const CardContainer = styled.div`
   width: 50%;
   max-height: calc(100% - 12px);
   overflow-y: auto;
+  justify-items: center;
 `;
 
 const Index = () => {

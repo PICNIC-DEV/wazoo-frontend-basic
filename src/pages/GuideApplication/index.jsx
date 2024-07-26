@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
+import { format } from 'date-fns';
 import styled from 'styled-components';
-// import Calendar from '../../components/Calendar';
+import Calendar from '../../components/Calendar';
 
 const Container = styled.div`
   width: 100%;
@@ -79,7 +80,7 @@ const DateTitle = styled.span`
   font-weight: 500;
   line-height: normal;
 `;
-const Date = styled.div`
+const DateTime = styled.div`
   cursor: pointer;
   font-family: Pretendard;
   font-size: 14px;
@@ -109,6 +110,20 @@ const Upload = styled.div`
   background: var(--gray-20, #d7dbdd);
   margin-bottom: 75px;
   flex-direction: column;
+  cursor: pointer;
+  position: relative;
+`;
+const FileInput = styled.input`
+  display: block;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  opacity: 0;
+  cursor: pointer;
 `;
 const NextBtn = styled.button`
   display: flex;
@@ -140,6 +155,7 @@ const Text = styled.span`
 `;
 
 const Index = () => {
+  const CalenderRef = useRef(null);
   const [applyForm, setApplyForm] = useState({
     intro: '',
     address: '',
@@ -149,6 +165,47 @@ const Index = () => {
       endDate: '종료일 입력하기',
     },
   });
+  const [dateRange, setDateRange] = useState({
+    startDate: new Date(),
+    endDate: new Date(),
+    key: 'selection',
+  });
+  const [isDateOpen, setIsDateOpen] = useState(false);
+  const [files, setFiles] = useState([]);
+
+  const handleDateRange = (ranges) => {
+    setDateRange({ ...dateRange, startDate: ranges.selection.startDate, endDate: ranges.selection.endDate });
+    setApplyForm({
+      ...applyForm,
+      dateRange: {
+        ...applyForm.dateRange,
+        startDate: format(ranges.selection.startDate, 'MM-dd'),
+        endDate: format(ranges.selection.endDate, 'MM-dd'),
+      },
+    });
+  };
+
+  const handleDate = () => {
+    setIsDateOpen(true);
+  };
+
+  const handleClickOutside = (event) => {
+    if (CalenderRef.current && !CalenderRef.current.contains(event.target)) {
+      setIsDateOpen(false);
+    }
+  };
+
+  const handleFilesChange = (e) => {
+    setFiles(Array.from(e.target.files));
+}
+
+  useEffect(() => {
+    document.addEventListener('click', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+    };
+  }, []);
 
   return (
     <Container>
@@ -185,27 +242,30 @@ const Index = () => {
               }}
             />
           </Form>
-          <Form>
+          <Form ref={CalenderRef}>
             <SubTitle>가능 일자</SubTitle>
-            <DateRange>
+            <DateRange onClick={handleDate}>
               <DateController>
                 <DateTitle>시작일</DateTitle>
-                <Date>{applyForm.dateRange.startDate}</Date>
+                <DateTime>{applyForm.dateRange.startDate}</DateTime>
               </DateController>
               <DateController>
                 <DateTitle>종료일</DateTitle>
-                <Date>{applyForm.dateRange.endDate}</Date>
+                <DateTime>{applyForm.dateRange.endDate}</DateTime>
               </DateController>
-              {/* <Calendar isDateOpen={isDateOpen}/> */}
+              <Calendar dateRange={dateRange} onChange={handleDateRange} isDateOpen={isDateOpen} />
             </DateRange>
           </Form>
         </ApplyContainer>
       </Info>
       <UploadGuide>사진 업로드하기</UploadGuide>
-      <Upload>
-        <svg className="icon-picture-medium" />
-        <Text>파일 선택하기</Text>
-      </Upload>
+      <form>
+        <Upload>
+          <FileInput type="file" onChange={handleFilesChange} />
+          <svg className="icon-picture-medium" />
+          <Text>파일 선택하기</Text>
+        </Upload>
+      </form>
       <NextBtn>다음</NextBtn>
     </Container>
   );
