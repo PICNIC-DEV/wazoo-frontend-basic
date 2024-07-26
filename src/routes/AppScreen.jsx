@@ -8,6 +8,7 @@ const ViewArea = styled.section`
   height: ${({ height }) => (height ? `${height}px` : `100%`)};
   padding: 0 30px;
   background: #f9f9f9;
+  min-width: 1200px;
 `;
 
 const AppScreen = () => {

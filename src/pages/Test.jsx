@@ -17,9 +17,11 @@ const Test = () => {
   };
   // 웹소켓 연결 설정 및 구독
   const connect = () => {
-    const socket = new SockJS('http://localhost:8080/api/ws');
+    const socket = new SockJS('http://localhost:5173/api/ws');
+    console.log('socket', socket);
     stompClient.current = Stomp.over(socket);
     stompClient.current.connect({}, () => {
+      console.log('check');
       stompClient.current.subscribe(`/sub/chat/room/` + chatId, (message) => {
         const newMessage = JSON.parse(message.body);
         setMessages((prevMessages) => [...prevMessages, newMessage]);
