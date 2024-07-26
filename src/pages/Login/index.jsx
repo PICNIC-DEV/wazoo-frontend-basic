@@ -28,7 +28,7 @@ const ContainerLogoImage = styled.div`
   height: 62px;
   justify-content: center;
   align-items: center;
-  background-color: #87929a;
+  /* background-color: #87929a; */
 `;
 
 const ContainerLogoTitle = styled.div`
@@ -92,6 +92,7 @@ const ButtonStyleLogin = styled.button`
   font-style: normal;
   font-weight: 700;
   line-height: normal;
+  border: 0;
 `;
 
 const ButtonStyleSignUp = styled.button`
@@ -110,6 +111,7 @@ const ButtonStyleSignUp = styled.button`
   font-style: normal;
   font-weight: 700;
   line-height: normal;
+  border: 0;
 `;
 
 const Index = () => {
@@ -117,7 +119,9 @@ const Index = () => {
     <>
       <ContainerMain>
         <ContainerLogoBox>
-          <ContainerLogoImage>로고 이미지</ContainerLogoImage>
+          <ContainerLogoImage>
+            <svg className="icon-logo-large" />
+          </ContainerLogoImage>
           <ContainerLogoTitle>토박이 가이드 매칭 서비스</ContainerLogoTitle>
         </ContainerLogoBox>
         <InputDataBox>
