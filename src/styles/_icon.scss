@@ -25,6 +25,9 @@
 .icon-picture {
   @include icon('picture_icon', 55px, 55px);
 }
+.icon-picture-medium {
+  @include icon('picture_icon', 36px, 36px);
+}
 .icon-picture-large {
   @include icon('picture_icon', 102px, 102px);
 }

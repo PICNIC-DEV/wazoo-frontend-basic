@@ -1,4 +1,5 @@
 import Main from '../pages/Main';
+import GuideApplication from '../pages/GuideApplication';
 import Login from '../pages/Login';
 import Mypage from '../pages/Mypage';
 import SignUp from '../pages/SignUp';
@@ -8,6 +9,9 @@ const MainScreens = {
     path: '/',
     element: <Main />,
   },
+  Guide: {
+    path: '/guide/apply',
+    element: <GuideApplication />,
   Login: {
     path: '/login',
     element: <Login />,
