@@ -1,3 +1,5 @@
+import { useState } from 'react';
+import { Navigate, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 const ContainerMain = styled.div`
@@ -28,7 +30,7 @@ const ContainerLogoImage = styled.div`
   height: 62px;
   justify-content: center;
   align-items: center;
-  background-color: #87929a;
+  /* background-color: #87929a; */
 `;
 
 const ContainerLogoTitle = styled.div`
@@ -41,27 +43,21 @@ const ContainerLogoTitle = styled.div`
   line-height: normal;
 `;
 
-const InputDataBox = styled.div`
+const InputRow = styled.input`
   display: flex;
   width: 414px;
   height: 24px;
   padding: 20px 32px;
   align-items: center;
-  gap: 10px;
-  border-radius: 55px;
+  margin-bottom: 10px;
+
+  border-radius: 40px;
   border: 1px solid var(--gray-20, #d7dbdd);
   background: #fff;
-  margin-top: 8px;
-`;
-
-const InputData = styled.div`
-  color: var(--gray-60, #87929a);
-  text-align: center;
-  font-family: Pretendard;
-  font-size: 18px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
+  cursor: pointer;
+  &:hover {
+    opacity: 0.5;
+  }
 `;
 
 const ContainerButtons = styled.div`
@@ -75,7 +71,7 @@ const ContainerButtons = styled.div`
   margin-top: 36px;
 `;
 
-const ButtonStyleLogin = styled.button`
+const ButtonStyleLogin = styled.div`
   display: flex;
   width: 199px;
   height: 64px;
@@ -92,9 +88,10 @@ const ButtonStyleLogin = styled.button`
   font-style: normal;
   font-weight: 700;
   line-height: normal;
+  border: 0;
 `;
 
-const ButtonStyleSignUp = styled.button`
+const ButtonStyleSignUp = styled.div`
   display: flex;
   width: 199px;
   height: 64px;
@@ -110,25 +107,49 @@ const ButtonStyleSignUp = styled.button`
   font-style: normal;
   font-weight: 700;
   line-height: normal;
+  border: 0;
 `;
 
 const Index = () => {
+  const [id, setId] = useState(false);
+  const [pw, setPw] = useState(false);
+
+  const handleChangeId = (event) => {
+    console.log(event.target.value)
+    setId(event.target.value)
+  }
+
+  const handleChangePw = (event) => {
+    console.log(event.target.value)
+    setPw(event.target.value)
+  }
+  
+  const navigate = useNavigate();
+  const navigateToSignup = () => {
+    console.log("login -> signup")
+    navigate("/signup")
+  }
+
+  const submitForm = () => {
+    console.log('================')
+    console.log(`id : ${id}`)
+    console.log(`pw : ${pw}`)
+  }
+
   return (
     <>
       <ContainerMain>
         <ContainerLogoBox>
-          <ContainerLogoImage>로고 이미지</ContainerLogoImage>
+          <ContainerLogoImage>
+            <svg className="icon-logo-large" />
+          </ContainerLogoImage>
           <ContainerLogoTitle>토박이 가이드 매칭 서비스</ContainerLogoTitle>
         </ContainerLogoBox>
-        <InputDataBox>
-          <InputData>아이디를 입력하세요</InputData>
-        </InputDataBox>
-        <InputDataBox>
-          <InputData>비밀번호를 입력하세요</InputData>
-        </InputDataBox>
+        <InputRow placeholder='아이디를 입력하세요' onChange={handleChangeId} />
+        <InputRow placeholder='비밀번호를 입력하세요' onChange={handleChangePw} />
         <ContainerButtons>
-          <ButtonStyleLogin>로그인</ButtonStyleLogin>
-          <ButtonStyleSignUp>회원가입</ButtonStyleSignUp>
+          <ButtonStyleLogin onClick={submitForm}>로그인</ButtonStyleLogin>
+          <ButtonStyleSignUp onClick={navigateToSignup}>회원가입</ButtonStyleSignUp>
         </ContainerButtons>
       </ContainerMain>
     </>

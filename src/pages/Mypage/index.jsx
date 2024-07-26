@@ -24,6 +24,10 @@ const Image = styled.div`
   flex-shrink: 0;
   border-radius: 200px;
   background: var(--gray-20, #d7dbdd);
+  cursor: pointer;
+  &:hover {
+    opacity: 0.5;
+  }
 `;
 
 const TextBoxInfo = styled.div`
@@ -97,7 +101,6 @@ const ContainerTemp = styled.div`
 
 const TextLabelTemp = styled.div`
   margin-top: 60px;
-  color: var(--gray-100, #374957);
   text-align: center;
   font-family: Pretendard;
   font-size: 30px;
@@ -113,7 +116,6 @@ const TempIconImage = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background-color: grey;
   gap: 24px;
   margin-bottom: 24px;
 `;
@@ -181,7 +183,7 @@ const TextLabelMyguide = styled.span`
 `;
 
 const TempImageGuide = styled.div`
-  background-color: grey;
+  //background-color: grey;
   width: 300px;
   height: 300px;
   margin-top: 35px;
@@ -276,6 +278,11 @@ const ContainerChatDateInfo = styled.div`
   justify-content: center;
   margin-top: 6px;
   margin-bottom: 6px;
+
+  cursor: pointer;
+  &:hover {
+    opacity: 0.5;
+  }
 `;
 
 const TextLabelChatDay = styled.span`
@@ -313,6 +320,11 @@ const ButtonGetChatList = styled.div`
   font-style: normal;
   font-weight: 700;
   line-height: normal;
+
+  cursor: pointer;
+  &:hover {
+    opacity: 0.5;
+  }
 `;
 
 const Line = styled.div`
@@ -370,6 +382,11 @@ const ContainerReviewCard = styled.div`
 
   /* drop-shadow */
   box-shadow: 0px 0px 4px 4px rgba(0, 0, 0, 0.16);
+
+  cursor: pointer;
+  &:hover {
+    opacity: 0.5;
+  }
 `;
 
 const TextReviewScript = styled.div`
@@ -410,7 +427,9 @@ const Index = () => {
       </ContainerProfile>
       <ContainerTemp>
         <TextLabelTemp>나의 온도</TextLabelTemp>
-        <TempIconImage>images</TempIconImage>
+        <TempIconImage>
+          <svg className="icon-picture" />
+        </TempIconImage>
         <TextTempStatus>구름이 가득해요.</TextTempStatus>
         <TextTempStatusInfo>
           이제 막 가이드 활동을 시작했군요! <br />
@@ -421,7 +440,9 @@ const Index = () => {
         <ContainerGuideInfo>
           <ContainerInfoLeft>
             <TextLabelMyguide>나의 가이드 정보</TextLabelMyguide>
-            <TempImageGuide></TempImageGuide>
+            <TempImageGuide>
+              <svg className="icon-picture" />
+            </TempImageGuide>
           </ContainerInfoLeft>
           <ContainerInfoRight>
             <ContainerGuidDetail>

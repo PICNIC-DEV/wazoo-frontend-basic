@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import KakaoMap from '../../components/KakaoMap';
 import Card from '../../components/Card';
+import { Instance } from '../../apis/axiosConfig';
 
 const MainPage = styled.div`
   padding-top: 32px;
@@ -119,9 +120,14 @@ const Index = () => {
     },
   ];
 
+  const actionTest = async () => {
+    const data = await Instance.get('/test');
+    console.log(data.data);
+  };
+
   return (
     <MainPage>
-      <Notification>{isResult ? '신혜민님과 어울리는 가이드를 보여드릴게요' : '🔥 지금 가장 인기있는 가이드'}</Notification>
+      <Notification onClick={actionTest}>{isResult ? '신혜민님과 어울리는 가이드를 보여드릴게요' : '🔥 지금 가장 인기있는 가이드'}</Notification>
       <ScreenSection>
         <MapContainer>
           <KakaoMap />
