@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { useSelector } from 'react-redux';
+import { useState } from 'react';
 
 const Container = styled.div``;
 const Info = styled.div`
@@ -184,6 +185,7 @@ const GuideInfo = () => {
       name: '소비요정 공작',
     },
   ];
+  const [temperature, setTemperature] = useState('icon-cloudy');
 
   return (
     <Container>
@@ -193,7 +195,9 @@ const GuideInfo = () => {
         </Picture>
         <InfoContainer>
           <Name>{item.name}</Name>
-          <Temperature>☁️️</Temperature>
+          <Temperature>
+            <svg className={temperature} />
+          </Temperature>
           <Address>{item.address}</Address>
           <Intro>안녕하세요, 포천 20년 토박이 신혜민입니다. 포천 가이드 쌉가능입니다. ^^</Intro>
           <CostContainer>
