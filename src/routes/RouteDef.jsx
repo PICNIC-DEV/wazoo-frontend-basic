@@ -12,6 +12,7 @@ const MainScreens = {
   Guide: {
     path: '/guide/apply',
     element: <GuideApplication />,
+  },
   Login: {
     path: '/login',
     element: <Login />,
