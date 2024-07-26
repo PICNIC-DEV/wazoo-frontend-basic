@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+import { Navigate, useNavigate } from 'react-router-dom';
+import InputDataForm from '../Login/InputDataForm';
 
 const ContainerMain = styled.div`
   width: 100%;
@@ -17,7 +19,6 @@ const TextLabelSignUp = styled.div`
   margin-top: 80px;
   margin-bottom: 48px;
 `;
-
 const ContainerInfo = styled.div`
   width: 526px;
   height: 304px;
@@ -26,45 +27,6 @@ const ContainerInfo = styled.div`
   justify-content: center;
   margin-top: 48px;
   margin-bottom: 48px;
-`;
-
-const ContainerRow = styled.div`
-  width: 526px;
-  height: 64px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 32;
-  margin-bottom: 16px;
-`;
-
-const TextLabelRow = styled.div`
-  color: var(--gray-60, #87929a);
-  width: 80px;
-  height: 24px;
-  font-family: Pretendard;
-  font-size: 15px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
-  margin-right: 32px;
-`;
-
-const InputRow = styled.div`
-  display: flex;
-  width: 414px;
-  height: 24px;
-  padding: 20px 32px;
-  align-items: center;
-  gap: 10px;
-
-  border-radius: 40px;
-  border: 1px solid var(--gray-20, #d7dbdd);
-  background: #fff;
-  cursor: pointer;
-  &:hover {
-    opacity: 0.5;
-  }
 `;
 
 const ButtonNext = styled.button`
@@ -79,7 +41,6 @@ const ButtonNext = styled.button`
   border-color: #27d562;
   background: var(--primary, #27d562);
   margin-top: 48px;
-
   color: #fff;
   font-family: Pretendard;
   font-size: 20px;
@@ -88,37 +49,59 @@ const ButtonNext = styled.button`
   line-height: normal;
 `;
 
+
+
 const Index = () => {
+  const InputDatas =[
+    {
+      label: "이름",
+      placeholder: "이름을 입력해주세요",
+      required: true
+    },
+    {
+      label: "아이디",
+      placeholder: "아이디를 입력해주세요",
+      required: true
+    },
+    {
+      label: "비밀번호",
+      placeholder: "비밀번호를 입력해주세요",
+      required: true
+    },
+    {
+      label: "주소",
+      placeholder: "주소를 입력해주세요",
+      required: true
+    },
+    {
+      label: "사용 언어",
+      placeholder: "사용 언어를 입력해주세요",
+      required: true
+    }
+  ]
+
+  const LanguageList = [
+
+  ];
+
+  const navigate = useNavigate();
+  const navigateToQuiz = () => {
+    console.log("signup -> quiz")
+    navigate("/quiz")
+  }
+
   return (
     <>
       <ContainerMain>
         <TextLabelSignUp>회원가입</TextLabelSignUp>
         <ContainerInfo>
-          <ContainerRow>
-            <TextLabelRow>이름</TextLabelRow>
-            <InputRow>이름을 입력하세요</InputRow>
-          </ContainerRow>
-          <ContainerRow>
-            <TextLabelRow>아이디</TextLabelRow>
-            <InputRow>아이디를 입력하세요</InputRow>
-          </ContainerRow>
-          <ContainerRow>
-            <TextLabelRow>비밀번호</TextLabelRow>
-            <InputRow>비밀번호를 입력하세요</InputRow>
-          </ContainerRow>
-          <ContainerRow>
-            <TextLabelRow>주소</TextLabelRow>
-            <InputRow>주소 검색하기</InputRow>
-          </ContainerRow>
-          <ContainerRow>
-            <TextLabelRow>사용 언어</TextLabelRow>
-            <InputRow>언어 선택하기</InputRow>
-          </ContainerRow>
+          {InputDatas.map((item) => (
+            <InputDataForm label={item.label} placeholder={item.placeholder} required={item.required} />
+          ))}
         </ContainerInfo>
-        <ButtonNext>다음</ButtonNext>
+        <ButtonNext onClick={navigateToQuiz}>다음</ButtonNext>
       </ContainerMain>
     </>
   );
 };
-
 export default Index;
