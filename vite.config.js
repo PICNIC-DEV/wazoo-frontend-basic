@@ -9,6 +9,7 @@ export default defineConfig({
         target: 'http://localhost:8080',
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, ''),
+        ws: true,
       },
     },
   },
@@ -16,15 +17,6 @@ export default defineConfig({
     preprocessorOptions: {
       scss: {
         additionalData: `@import "./src/styles/_common.scss";`,
-      },
-    },
-  },
-  server: {
-    proxy: {
-      '/api': {
-        target: 'http://localhost:8080',
-        changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, ''),
       },
     },
   },
