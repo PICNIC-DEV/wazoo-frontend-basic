@@ -24,7 +24,7 @@ const HeaderContainer = styled.header`
 const Container = styled.div`
   display: flex;
   width: 100%;
-  padding: 10px 20px;
+  padding: 32px 20px;
   justify-content: space-between;
   align-items: center;
 `;
@@ -40,7 +40,7 @@ const LinkLogo = styled(Link)`
 const SearchControls = styled.div`
   max-width: 850px;
   width: 100%;
-  height: 80px;
+  height: 56px;
   display: flex;
   align-items: center;
 `;
@@ -53,26 +53,19 @@ const SearchForms = styled.div`
   box-shadow:
     0 3px 12px 0 rgba(0, 0, 0, 0.1),
     0 1px 2px 0 rgba(0, 0, 0, 0.08);
+  gap: 16px;
+  cursor: pointer;
 `;
 const DestinationSearch = styled.div`
   width: 100%;
   border-radius: 30px;
-  padding: 15px 30px;
+  padding: 8px 30px;
   box-sizing: border-box;
   position: relative;
   align-items: center;
   background-color: ${({ $ismenuopen }) => ($ismenuopen.status ? ($ismenuopen.selected == 1 ? '#ffffff !important' : '#EBEBEB') : '#ffffff')};
   &:hover {
     background-color: #ebebeb;
-  }
-  &::after {
-    position: absolute;
-    content: '';
-    width: 1px;
-    background-color: var(--border-color);
-    height: 40px;
-    bottom: 15px;
-    right: 0;
   }
 `;
 const Title = styled.div`
@@ -97,41 +90,23 @@ const DateRange = styled.div`
 const StartController = styled.div`
   width: 140px;
   border-radius: 30px;
-  padding: 15px 30px;
+  padding: 8px 30px;
   box-sizing: border-box;
   position: relative;
   background-color: ${({ $ismenuopen }) => ($ismenuopen.status ? ($ismenuopen.selected == 2 ? '#ffffff !important' : '#EBEBEB') : '#ffffff')};
   &:hover {
     background-color: #ebebeb;
   }
-  &::after {
-    position: absolute;
-    content: '';
-    width: 1px;
-    background-color: var(--border-color);
-    height: 40px;
-    bottom: 15px;
-    right: 0;
-  }
 `;
 const EndController = styled.div`
   width: 140px;
   border-radius: 30px;
-  padding: 15px 30px;
+  padding: 8px 30px;
   box-sizing: border-box;
   position: relative;
   background-color: ${({ $ismenuopen }) => ($ismenuopen.status ? ($ismenuopen.selected == 3 ? '#ffffff !important' : '#EBEBEB') : '#ffffff')};
   &:hover {
     background-color: #ebebeb;
-  }
-  &::after {
-    position: absolute;
-    content: '';
-    width: 1px;
-    background-color: var(--border-color);
-    height: 40px;
-    bottom: 15px;
-    right: 0;
   }
 `;
 const Input = styled.div`
@@ -147,7 +122,7 @@ const GuestInput = styled.div`
   display: flex;
   width: 100%;
   border-radius: 30px;
-  padding: 15px 30px;
+  padding: 8px 30px;
   box-sizing: border-box;
   justify-content: space-between;
   align-items: center;
@@ -168,7 +143,50 @@ const SearchButton = styled.button`
   border: 0;
 `;
 //profile section
-const Profile = styled.div``;
+const Profile = styled.div`
+  display: inline-flex;
+  padding: 8px 20px;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  border-radius: 20px;
+  border: 1px solid var(--gray-20, #d7dbdd);
+  background: #fff;
+  position: relative;
+`;
+const ProfileText = styled(Link)`
+  color: var(--primary-dark-color);
+  font-family: Pretendard;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  text-decoration: none;
+`;
+const HamburgerIcon = styled.div``;
+const ProfileDropDown = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 20px;
+  position: absolute;
+  left: 0;
+  top: 49px;
+  border-radius: 10px;
+  border: 1px solid var(--gray-20, #d7dbdd);
+  background: #fff;
+  box-shadow: 0px 0px 4px 4px rgba(0, 0, 0, 0.02);
+  z-index: 10;
+`;
+const RouterList = styled(Link)`
+  color: var(--primary-dark-color);
+  font-family: Pretendard;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  text-decoration: none;
+`;
 
 const Header = () => {
   const headerRef = useRef(null);
@@ -176,6 +194,8 @@ const Header = () => {
     status: false,
     selected: null,
   });
+  const [isLogin, setIsLogin] = useState(false);
+  const [isProfileOpen, setIsProfileOpen] = useState(false);
   const [isDateOpen, setIsDateOpen] = useState(false);
   const [isDestinationOpen, setIsDestinationOpen] = useState(false);
   const [isGuestOpen, setIsGuestOpen] = useState(false);
@@ -210,6 +230,12 @@ const Header = () => {
     }
     if (num == 4) {
       setIsGuestOpen(true);
+    }
+    if (num == 5 && isLogin) {
+      setIsProfileOpen(true);
+      if (isProfileOpen) {
+        setIsProfileOpen(false);
+      }
     }
     setIsMenuOpen({ ...isMenuOpen, status: true, selected: num });
   };
@@ -311,10 +337,27 @@ const Header = () => {
             </GuestInput>
           </SearchForms>
         </SearchControls>
-        <Profile>
+        <Profile onClick={() => onSelect(5)}>
+          {!isLogin ? (
+            <ProfileText to={'/login'}>로그인</ProfileText>
+          ) : (
+            <HamburgerIcon>
+              <svg className="icon-menu" />
+            </HamburgerIcon>
+          )}
           <div className="icon profile">
             <svg className="icon-profile" />
           </div>
+          {isProfileOpen ? (
+            <ProfileDropDown>
+              <RouterList>대화 목록</RouterList>
+              <RouterList>내 프로필</RouterList>
+              <RouterList>가이드 등록하기</RouterList>
+              <RouterList>로그아웃</RouterList>
+            </ProfileDropDown>
+          ) : (
+            ''
+          )}
         </Profile>
       </Container>
     </HeaderContainer>
