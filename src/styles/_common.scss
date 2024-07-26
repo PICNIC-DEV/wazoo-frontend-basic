@@ -2,7 +2,7 @@
 
 :root {
   --border-color: #dddddd;
-  --primary-color: #27d562;
+  --brand-color: #27d562;
   --primary-dark-color: var(--gray-100, #374957);
   --primary-gray-color: var(--gray-60, #87929a);
   --primary-light-gray: var(--gray-20, #d7dbdd);
@@ -16,8 +16,8 @@
   justify-content: center;
 
   &.profile {
-    width: 57px;
-    height: 57px;
+    width: 32px;
+    height: 32px;
     border-radius: 200px;
     background: #ececec;
   }
