@@ -8,7 +8,7 @@ const Item = styled.div`
   position: relative;
   padding: 18px 0;
   align-items: center;
-  justify-content: space-between
+  justify-content: space-between;
   border: 1px;
 
   &::after {

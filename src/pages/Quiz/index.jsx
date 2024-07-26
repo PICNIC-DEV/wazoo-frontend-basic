@@ -1,4 +1,7 @@
+import { useState } from 'react';
 import styled from 'styled-components';
+import QuizPhotoCard from './QuizPhotoCard';
+import QuizForm from './QuizForm';
 
 const ContainerMain = styled.div`
   width: 100%;
@@ -53,6 +56,7 @@ const PhotoCard = styled.div`
 
   border-radius: 10px;
   background: var(--gray-20, #d7dbdd);
+  /* background-image: url("../../assets/icons/minus_icon.svg"); */
   margin-bottom: 10px;
 `;
 
@@ -91,20 +95,63 @@ const ButtonNext = styled.div`
 `;
 
 const Index = () => {
+  const [choiceA, setChoiceA] = useState(false);
+  const [choiceB, setChoiceB] = useState(false);
+
+  const submitFormA = () => {
+    setChoiceA(true)
+    setChoiceB(false)
+    console.log("--------------")
+    console.log(`choiceA ==> ${choiceA}`)
+    console.log(`choiceB ==> ${choiceB}`)
+  }
+
+  const submitFormB = () => {
+    setChoiceA(false)
+    setChoiceB(true)
+    console.log("--------------")
+    console.log(`choiceA ==> ${choiceA}`)
+    console.log(`choiceB ==> ${choiceB}`)
+  }
+
+  const quizList = [
+    {
+      question: "Q1. question",
+      message1: "text 1",
+      message2: "text 2",
+      imageSrc1: null,
+      imageSrc2: null
+    },
+    {
+      question: "Q2. question",
+      message1: "text 1",
+      message2: "text 2",
+      imageSrc1: null,
+      imageSrc2: null
+    },
+    {
+      question: "Q3. question",
+      message1: "text 1",
+      message2: "text 2",
+      imageSrc1: null,
+      imageSrc2: null
+    },
+    {
+      question: "Q4. question",
+      message1: "text 1",
+      message2: "text 2",
+      imageSrc1: null,
+      imageSrc2: null
+    }
+  ];
+
   return (
     <>
       <ContainerMain>
-        <TextQuestion>Q1. 나는 어쩌구 저쩌구 한다</TextQuestion>
-        <ContainerQuiz>
-          <ContainerPhotoCard>
-            <PhotoCard />
-            <PhotoInfo>선택1</PhotoInfo>
-          </ContainerPhotoCard>
-          <ContainerPhotoCard>
-            <PhotoCard />
-            <PhotoInfo>선택2</PhotoInfo>
-          </ContainerPhotoCard>
-        </ContainerQuiz>
+        {quizList.map((item) => {
+          <QuizForm question={item.question} />
+        })}
+        <QuizForm question={"Q1. question"}/>
         <ButtonNext>다음</ButtonNext>
       </ContainerMain>
     </>
