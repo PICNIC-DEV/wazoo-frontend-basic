@@ -30,14 +30,6 @@ const MainScreens = {
     path: '/signup',
     element: <SignUp />,
   },
-  Quiz: {
-    path: '/quiz',
-    element: <Quiz />,
-  },
-  QuizResult: {
-    path: '/quizresult',
-    element: <QuizResult />,
-  },
 };
 
 const ChatListScreens = {
@@ -45,25 +37,16 @@ const ChatListScreens = {
     path: '/chat/:userId',
     element: <Chat />,
   },
-};
-
-const ChatRoomScreens = {
   ChatRoom: {
-    path: '/chat/:userId/:chatId/:partnerName',
+    path: '/chat/:chatId/:userId/:partnerId',
     element: <ChatRoom />,
   },
-};
-
-const TestScreens = {
   Test: {
-    path: '/test',
+    path: '/test/:userId/:chatId/:partnerName',
     element: <Test />,
   },
 };
 
 export const AppRouteDef = {
   ...MainScreens,
-  ...ChatListScreens,
-  ...ChatRoomScreens,
-  ...TestScreens,
 };
