@@ -5,7 +5,7 @@ import Card from '../../components/Card';
 const MainPage = styled.div`
   padding-top: 32px;
   width: 100%;
-  height: calc(100% - 132px);
+  height: calc(100% - 152px);
 `;
 const Notification = styled.span`
   color: var(--primary-dark-color);
