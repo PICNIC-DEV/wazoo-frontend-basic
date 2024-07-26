@@ -28,8 +28,8 @@ const QuizForm = (props) => {
     <>
       <TextQuestion>{props.question}</TextQuestion>
       <ContainerQuiz>
-        <QuizPhotoCard URL={props.imageSrc1} message={props.message1}/>
-        <QuizPhotoCard URL={props.imageSrc2} message={props.message2}/>
+        <QuizPhotoCard link={props.imageSrc1} message={props.message1}/>
+        <QuizPhotoCard link={props.imageSrc2} message={props.message2}/>
       </ContainerQuiz>
     </>
   );

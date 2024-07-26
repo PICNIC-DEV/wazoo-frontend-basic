@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Navigate, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import QuizPhotoCard from './QuizPhotoCard';
 import QuizForm from './QuizForm';
@@ -80,7 +81,8 @@ const ButtonNext = styled.div`
   align-items: center;
 
   border-radius: 30px;
-  background: var(--primary, #27d562);
+  /* background: var(--primary, #27d562); */
+  background-color: #27d562;
   cursor: pointer;
   &:hover {
     opacity: 0.5;
@@ -97,6 +99,14 @@ const ButtonNext = styled.div`
 const Index = () => {
   const [choiceA, setChoiceA] = useState(false);
   const [choiceB, setChoiceB] = useState(false);
+  const [question, setQuestion] = useState('Q1. question');
+  const [quizNum, setQuizNum] = useState(1);
+  const [message1, setMessage1] = useState("text 1");
+  const [message2, setMessage2] = useState("text 2");
+  const [imgSrc1, setImgSrc1] = useState(null);
+  const [imgSrc2, setImgSrc2] = useState(null);
+  // const [quizNum, setQuizNum] = useState('');
+  
 
   const submitFormA = () => {
     setChoiceA(true)
@@ -144,15 +154,48 @@ const Index = () => {
       imageSrc2: null
     }
   ];
+  
+  // let quizNum = 0;
+  const SetQuiz = () => {
+    setQuestion(quizList[quizNum].question)
+    setMessage1(quizList[quizNum].message1)
+    setMessage2(quizList[quizNum].message2)
+    setImgSrc1(quizList[quizNum].imgSrc1)
+    setImgSrc2(quizList[quizNum].imgSrc2)
+  }
+
+  const NextQuiz = () => {
+    if(quizNum < quizList.length){
+      setQuizNum(quizNum+1)
+      SetQuiz()
+      console.log(quizNum)
+    }
+  }
+
+  const navigate = useNavigate();
+  const navigateToQuizResult = () => {
+    console.log("Quiz -> QuizResult")
+    navigate("/QuizResult")
+  }
+
+  const QuizFinish = () => {
+    if(quizNum < quizList.length){
+      alert("아직 설문이 끝나지 않았습니다")
+    }
+    else{
+      navigateToQuizResult()
+    }
+  }
 
   return (
     <>
       <ContainerMain>
-        {quizList.map((item) => {
-          <QuizForm question={item.question} />
-        })}
-        <QuizForm question={"Q1. question"}/>
-        <ButtonNext>다음</ButtonNext>
+        <TextQuestion>{question}</TextQuestion>
+        <ContainerQuiz>
+          <QuizPhotoCard link={imgSrc1} message={message1} onClick={NextQuiz} />
+          <QuizPhotoCard link={imgSrc2} message={message2} onClick={NextQuiz}/>
+        </ContainerQuiz>
+        <ButtonNext onClick={QuizFinish}>결과 보기</ButtonNext>
       </ContainerMain>
     </>
   );

@@ -22,7 +22,7 @@ const ContainerLogoBox = styled.div`
   align-items: center;
   margin-top: 100px;
   margin-bottom: 48px;
-`;
+  `;
 
 const ContainerLogoImage = styled.div`
   display: flex;
@@ -30,7 +30,6 @@ const ContainerLogoImage = styled.div`
   height: 62px;
   justify-content: center;
   align-items: center;
-  background-color: #87929a;
 `;
 
 const ContainerLogoTitle = styled.div`
