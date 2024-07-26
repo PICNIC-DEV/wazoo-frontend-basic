@@ -57,7 +57,7 @@ const KakaoMap = () => {
   return (
     <>
       {location && (
-        <Map center={location} style={{ width: (window.innerWidth - 60) / 2, height: window.innerHeight - 188 }} level={3}>
+        <Map center={location} style={{ width: (window.innerWidth - 60) / 2, height: window.innerHeight - 208 }} level={3}>
           {locationList.map((item, index) => (
             <CustomOverlayMap key={index} position={{ lat: item.lat, lng: item.lng }}>
               <OverLay>

@@ -5,7 +5,7 @@
 }
 
 .icon-profile {
-  @include icon('profile_icon', 18px, 24px);
+  @include icon('profile_icon', 11px, 15px);
 }
 .icon-profile-main {
   @include icon('profile_icon', 72px, 95px);
@@ -33,4 +33,7 @@
 }
 .icon-close {
   @include icon('close_icon', 16px, 16px);
+}
+.icon-menu {
+  @include icon('menu_icon', 24px, 16px);
 }

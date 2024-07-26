@@ -136,7 +136,7 @@ const NextBtn = styled.button`
   flex-shrink: 0;
   border-radius: 30px;
   border: 0;
-  background: var(--primary-color);
+  background: var(--brand-color);
   color: #fff;
   font-family: Pretendard;
   font-size: 20px;
@@ -197,7 +197,7 @@ const Index = () => {
 
   const handleFilesChange = (e) => {
     setFiles(Array.from(e.target.files));
-}
+  };
 
   useEffect(() => {
     document.addEventListener('click', handleClickOutside);
