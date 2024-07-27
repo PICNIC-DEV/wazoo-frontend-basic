@@ -5,8 +5,8 @@ import GuideApplication from '../pages/GuideApplication';
 import Login from '../pages/Login';
 import Mypage from '../pages/Mypage';
 import SignUp from '../pages/SignUp';
-// import Quiz from '../pages/Quiz';
-// import QuizResult from '../pages/QuizResult';
+import Quiz from '../pages/Quiz';
+import QuizResult from '../pages/QuizResult';
 
 const MainScreens = {
   Main: {
