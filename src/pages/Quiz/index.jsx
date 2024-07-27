@@ -99,14 +99,14 @@ const ButtonNext = styled.div`
 const Index = () => {
   const [choiceA, setChoiceA] = useState(false);
   const [choiceB, setChoiceB] = useState(false);
-  const [question, setQuestion] = useState('Q1. question');
+  const [question, setQuestion] = useState('Q1. 길거리 유혹은 못참지! vs 목적지를 향해 직진!');
   const [quizNum, setQuizNum] = useState(1);
-  const [message1, setMessage1] = useState("text 1");
-  const [message2, setMessage2] = useState("text 2");
+  const [message1, setMessage1] = useState("유동적");
+  const [message2, setMessage2] = useState("계획적");
   const [imgSrc1, setImgSrc1] = useState(null);
   const [imgSrc2, setImgSrc2] = useState(null);
   // const [quizNum, setQuizNum] = useState('');
-  
+
 
   const submitFormA = () => {
     setChoiceA(true)
@@ -126,35 +126,56 @@ const Index = () => {
 
   const quizList = [
     {
-      question: "Q1. question",
-      message1: "text 1",
-      message2: "text 2",
+      question: "Q1. 길거리 유혹은 못참지! <\n>vs 목적지를 향해 직진!",
+      message1: "유동적",
+      message2: "계획적",
       imageSrc1: null,
       imageSrc2: null
     },
     {
-      question: "Q2. question",
-      message1: "text 1",
-      message2: "text 2",
+      question: "Q2. 여행은 힐링이지~ 10시 기상~ \nvs 내 연차는 소중하다! 1분1초 알뜰히! ",
+      message1: "유동적",
+      message2: "계획적",
       imageSrc1: null,
       imageSrc2: null
     },
     {
-      question: "Q3. question",
-      message1: "text 1",
-      message2: "text 2",
+      question: "Q3.여행짐은 간단하게, 필요한건 지갑뿐! \nvs 나는야 21세기 보부상 ",
+      message1: "유동적 + 플렉스",
+      message2: "계획적 + 가성비",
       imageSrc1: null,
       imageSrc2: null
     },
     {
-      question: "Q4. question",
-      message1: "text 1",
-      message2: "text 2",
+      question: "Q4. 여기서부터 저기까지 다주세요😎 \nvs 여행지 물가는 비싸구나.. 다른거먹자!",
+      message1: "플렉스",
+      message2: "가성비",
+      imageSrc1: null,
+      imageSrc2: null
+    },
+    {
+      question: "Q5. 숙소도 여행의 일부, 화려하게 사진 한장! \nvs 숙소는 잠만 자는 곳!",
+      message1: "플렉스",
+      message2: "가성비",
+      imageSrc1: null,
+      imageSrc2: null
+    },
+    {
+      question: "Q6. 미리 찾아본 추천맛집 \nvs 토박이들만 아는 현지맛집",
+      message1: "유명관광지",
+      message2: "현지인 체험",
+      imageSrc1: null,
+      imageSrc2: null
+    },
+    {
+      question: "Q7. 인생은 마이웨이 혼자 다닐래 \nvs 사람들이랑 부대끼며 추억만들래 ",
+      message1: "혼자",
+      message2: "다같이",
       imageSrc1: null,
       imageSrc2: null
     }
-  ];
-  
+  ]
+
   // let quizNum = 0;
   const SetQuiz = () => {
     setQuestion(quizList[quizNum].question)
@@ -165,8 +186,8 @@ const Index = () => {
   }
 
   const NextQuiz = () => {
-    if(quizNum < quizList.length){
-      setQuizNum(quizNum+1)
+    if (quizNum < quizList.length) {
+      setQuizNum(quizNum + 1)
       SetQuiz()
       console.log(quizNum)
     }
@@ -179,10 +200,10 @@ const Index = () => {
   }
 
   const QuizFinish = () => {
-    if(quizNum < quizList.length){
+    if (quizNum < quizList.length) {
       alert("아직 설문이 끝나지 않았습니다")
     }
-    else{
+    else {
       navigateToQuizResult()
     }
   }
@@ -193,7 +214,7 @@ const Index = () => {
         <TextQuestion>{question}</TextQuestion>
         <ContainerQuiz>
           <QuizPhotoCard link={imgSrc1} message={message1} onClick={NextQuiz} />
-          <QuizPhotoCard link={imgSrc2} message={message2} onClick={NextQuiz}/>
+          <QuizPhotoCard link={imgSrc2} message={message2} onClick={NextQuiz} />
         </ContainerQuiz>
         <ButtonNext onClick={QuizFinish}>결과 보기</ButtonNext>
       </ContainerMain>

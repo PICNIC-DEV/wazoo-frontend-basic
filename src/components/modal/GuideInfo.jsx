@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { Instance } from '../../apis/axiosConfig';
+import { useNavigate } from 'react-router-dom';
 
 const Container = styled.div``;
 const Info = styled.div`
@@ -188,6 +189,7 @@ const GuideInfo = () => {
   ];
   const [temperature, setTemperature] = useState('icon-cloudy');
   const [guideInfo, setGuideInfo] = useState({});
+  // const navigation = useNavigate()
   // const {  } = useSelector((state) => state.user);
 
   const getGuideInfo = () => {
@@ -195,6 +197,10 @@ const GuideInfo = () => {
     console.log(data);
     setGuideInfo(data);
   };
+
+  const handleChat = () => {
+    window.location.href = '/chat/1/1/2';
+  }
 
   useEffect(() => {
     getGuideInfo();
@@ -225,7 +231,7 @@ const GuideInfo = () => {
                 <DateTime>2024.07.30</DateTime>
               </Date>
             </DateRange>
-            <ChatStart>대화시작하기</ChatStart>
+            <ChatStart onClick={handleChat} >대화시작하기</ChatStart>
           </CostContainer>
         </InfoContainer>
       </Info>

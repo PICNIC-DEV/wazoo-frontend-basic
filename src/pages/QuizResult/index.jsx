@@ -87,8 +87,8 @@ const ButtonLogin = styled.div`
 const Index = () => {
   const navigate = useNavigate();
   const navigateToLogin = () => {
-    console.log("QuizResult -> Login")
-    navigate("/Login")
+    console.log("QuizResult -> /")
+    navigate("/")
   }
 
   return (
