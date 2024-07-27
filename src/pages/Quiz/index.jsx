@@ -28,7 +28,7 @@ const TextQuestion = styled.div`
 const ContainerQuiz = styled.div`
   height: 274px;
   display: flex;
-  gap: 100px;
+  gap: 20px;
   flex-direction: row;
   justify-content: center;
   align-items: center;
@@ -105,23 +105,23 @@ const Index = () => {
   const [message2, setMessage2] = useState("계획적");
   const [imgSrc1, setImgSrc1] = useState(null);
   const [imgSrc2, setImgSrc2] = useState(null);
-  // const [quizNum, setQuizNum] = useState('');
-
-
+  
   const submitFormA = () => {
     setChoiceA(true)
     setChoiceB(false)
+  
+  const submitFormA = (event) => {
+    setChoice(`${choice} + "/" +${message1}`)
     console.log("--------------")
-    console.log(`choiceA ==> ${choiceA}`)
-    console.log(`choiceB ==> ${choiceB}`)
+    console.log(`ㅇㅇ${choice}`)
+    NextQuiz()
   }
 
-  const submitFormB = () => {
-    setChoiceA(false)
-    setChoiceB(true)
+  const submitFormB = (event) => {
+    setChoice(`${choice} + "/" +${message2}`)
     console.log("--------------")
-    console.log(`choiceA ==> ${choiceA}`)
-    console.log(`choiceB ==> ${choiceB}`)
+    console.log(`choice ==> ${choice}`)
+    NextQuiz()
   }
 
   const quizList = [
@@ -175,21 +175,19 @@ const Index = () => {
       imageSrc2: null
     }
   ]
-
   // let quizNum = 0;
   const SetQuiz = () => {
     setQuestion(quizList[quizNum].question)
     setMessage1(quizList[quizNum].message1)
     setMessage2(quizList[quizNum].message2)
-    setImgSrc1(quizList[quizNum].imgSrc1)
-    setImgSrc2(quizList[quizNum].imgSrc2)
+    setImgSrc1(quizList[quizNum].imageSrc1)
+    setImgSrc2(quizList[quizNum].imageSrc2)
   }
 
   const NextQuiz = () => {
     if (quizNum < quizList.length) {
       setQuizNum(quizNum + 1)
       SetQuiz()
-      console.log(quizNum)
     }
   }
 
@@ -207,7 +205,20 @@ const Index = () => {
       navigateToQuizResult()
     }
   }
+  // const { data } = Instance.post('/api/user/quizresult', loginData)
+  // .then(function(response){
+  //   //response
+  // }).catch(function(error) {
+  //   //error
+  // }).then(function() {
+  //   //항상 실행 
+  // });
 
+  // // 로그인 성공 
+  // if(data.message){
+  //   const navigate = useNavigate();
+  //   navigate("/")  
+  // }
   return (
     <>
       <ContainerMain>
