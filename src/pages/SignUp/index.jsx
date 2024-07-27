@@ -103,10 +103,6 @@ const Index = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const handleUserId = () => {
-    dispatch(setInfo({ userId: signupForm.login_id }));
-  };
-
   // const handleSignupForm = () => {
   //   let formData = new FormData(JSON.stringify(signupForm));
   //   try {
@@ -127,8 +123,8 @@ const Index = () => {
     axios
       .post('/api/api/user/register', formData)
       .then((response) => {
-        console.log(response.data);
-        handleUserId();
+        console.log(signupForm.login_id)
+        dispatch(setInfo({ userId: signupForm.login_id }));
         navigate('/quiz');
       })
       .catch((error) => {

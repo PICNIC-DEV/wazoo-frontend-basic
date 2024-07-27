@@ -97,17 +97,19 @@ const ButtonNext = styled.div`
 `;
 
 const Index = () => {
-  // choice : 선택 메세지에 대한 결과를 저장
-  const [choice, setChoice] = useState('');
+  const [choiceA, setChoiceA] = useState(false);
+  const [choiceB, setChoiceB] = useState(false);
   const [question, setQuestion] = useState('Q1. 길거리 유혹은 못참지! vs 목적지를 향해 직진!');
   const [quizNum, setQuizNum] = useState(1);
   const [message1, setMessage1] = useState("유동적");
   const [message2, setMessage2] = useState("계획적");
   const [imgSrc1, setImgSrc1] = useState(null);
   const [imgSrc2, setImgSrc2] = useState(null);
-  // const [quizNum, setQuizNum] = useState('');
   
-  // ================= 카드 선택 값 추가 ===================
+  const submitFormA = () => {
+    setChoiceA(true)
+    setChoiceB(false)
+  
   const submitFormA = (event) => {
     setChoice(`${choice} + "/" +${message1}`)
     console.log("--------------")
@@ -121,7 +123,6 @@ const Index = () => {
     console.log(`choice ==> ${choice}`)
     NextQuiz()
   }
-  // =====================================================
 
   const quizList = [
     {
@@ -174,7 +175,6 @@ const Index = () => {
       imageSrc2: null
     }
   ]
-  
   // let quizNum = 0;
   const SetQuiz = () => {
     setQuestion(quizList[quizNum].question)
@@ -185,8 +185,8 @@ const Index = () => {
   }
 
   const NextQuiz = () => {
-    if(quizNum < quizList.length){
-      setQuizNum(quizNum+1)
+    if (quizNum < quizList.length) {
+      setQuizNum(quizNum + 1)
       SetQuiz()
     }
   }
@@ -198,10 +198,10 @@ const Index = () => {
   }
 
   const QuizFinish = () => {
-    if(quizNum < quizList.length){
+    if (quizNum < quizList.length) {
       alert("아직 설문이 끝나지 않았습니다")
     }
-    else{
+    else {
       navigateToQuizResult()
     }
   }
@@ -224,8 +224,8 @@ const Index = () => {
       <ContainerMain>
         <TextQuestion>{question}</TextQuestion>
         <ContainerQuiz>
-          <QuizPhotoCard bColor={"lightcoral"} link={imgSrc1} message={message1} value={message1} onClick={submitFormA} />
-          <QuizPhotoCard bColor={"lightblue"} link={imgSrc2} message={message2} value={message2} onClick={submitFormB}/>
+          <QuizPhotoCard link={imgSrc1} message={message1} onClick={NextQuiz} />
+          <QuizPhotoCard link={imgSrc2} message={message2} onClick={NextQuiz} />
         </ContainerQuiz>
         <ButtonNext onClick={QuizFinish}>결과 보기</ButtonNext>
       </ContainerMain>

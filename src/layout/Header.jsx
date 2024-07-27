@@ -220,8 +220,15 @@ const Header = () => {
   const { placePredictions, getPlacePredictions } = usePlacesService({
     apiKey: import.meta.env.VITE_GOOGLE_MAPS_API_KEY,
   });
-  const { userId } = useSelector((state) => state.user);
+  const userId = useSelector((state) => state.user);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    console.log(userId)
+    if (userId.userId != null) {
+      setIsLogin(true)
+    }
+  }, [userId])
 
   const onSelect = (num) => {
     setIsDateOpen(false);
@@ -297,7 +304,7 @@ const Header = () => {
   };
 
   const handleSearchData = () => {
-    const { data } = Instance.get(`/api/guides/match?activeArea=${searchObj.destination}&travelerUserId=${userId}`);
+    const { data } = Instance.get(`/api/guides/match?activeArea=${searchObj.destination}&travelerUserId=${userId.userId}`);
     console.log(data);
     dispatch(setInfo({ item: data }));
   };
