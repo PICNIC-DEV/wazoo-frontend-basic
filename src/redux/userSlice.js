@@ -4,7 +4,6 @@ const userSlice = createSlice({
   name: 'user',
   initialState: {
     userId: null,
-    item: null,
   },
   reducers: {
     setInfo(state, action) {
@@ -14,5 +13,5 @@ const userSlice = createSlice({
   },
 });
 
-export const { showModal, hideModal } = userSlice.actions;
+export const { setInfo } = userSlice.actions;
 export default userSlice.reducer;

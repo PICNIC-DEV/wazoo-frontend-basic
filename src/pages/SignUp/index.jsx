@@ -1,7 +1,9 @@
 import styled from 'styled-components';
 import { useState } from 'react';
-import { Navigate, useNavigate } from 'react-router-dom';
-import { Instance } from '../../apis/axiosConfig';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import { useDispatch } from 'react-redux';
+import { setInfo } from '../../redux/userSlice';
 
 const ContainerMain = styled.div`
   width: 100%;
@@ -99,15 +101,39 @@ const Index = () => {
   });
 
   const navigate = useNavigate();
-  const navigateToQuiz = () => {
-    console.log('signup -> quiz');
-    navigate('/quiz');
+  const dispatch = useDispatch();
+
+  const handleUserId = () => {
+    dispatch(setInfo({ userId: signupForm.login_id }));
   };
 
+  // const handleSignupForm = () => {
+  //   let formData = new FormData(JSON.stringify(signupForm));
+  //   try {
+  //     const { data } = Instance.post('/api/user/register', formData);
+  //     console.log(data);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
+
   const handleSignupForm = () => {
-    console.log(signupForm);
-    const { data } = Instance.post('/api/user/register', signupForm);
-    console.log(data);
+    let formData = new FormData();
+    formData.append('name', signupForm.name);
+    formData.append('login_id', signupForm.login_id);
+    formData.append('login_password', signupForm.login_password);
+    formData.append('address', signupForm.address);
+    formData.append('nativeLanguage', signupForm.nativeLanguage);
+    axios
+      .post('/api/api/user/register', formData)
+      .then((response) => {
+        console.log(response.data);
+        handleUserId();
+        navigate('/quiz');
+      })
+      .catch((error) => {
+        console.error('There was an error!', error);
+      });
   };
 
   return (
@@ -161,7 +187,7 @@ const Index = () => {
             <TextLabelRow>{'사용 언어'}</TextLabelRow>
             <InputRow
               placeholder={'사용 언어를 입력해주세요'}
-              value={signupForm.nativeLanguae}
+              value={signupForm.nativeLanguage}
               onChange={(event) => {
                 setSignupForm({ ...signupForm, nativeLanguage: event.target.value });
               }}

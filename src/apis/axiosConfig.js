@@ -4,8 +4,7 @@ const createInstance = () => {
   const instance = axios.create({
     baseURL: '/api',
     headers: {
-      'Content-Type': 'application/json',
-      'Cache-Control': 'no-cache',
+      // 'Cache-Control': 'no-cache',
       'ngrok-skip-browser-warning': '69420',
       'Access-Control-Allow-Credentials': true,
     },
@@ -36,5 +35,5 @@ const createInstance = () => {
 };
 
 let Instance = createInstance('');
-
+8;
 export { Instance };
