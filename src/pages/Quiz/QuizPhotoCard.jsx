@@ -39,7 +39,7 @@ const PhotoInfo = styled.div`
 const QuizPhotoCard = (props) => {
  return(
   <ContainerPhotoCard onClick={props.onClick || null}>
-    <PhotoCard URL={props.url || null} />
+    <PhotoCard link={props.url || null} />
     <PhotoInfo>{props.message || null}</PhotoInfo>
   </ContainerPhotoCard>
  );   

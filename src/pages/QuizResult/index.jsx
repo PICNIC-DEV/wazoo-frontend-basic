@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 const ContainerMain = styled.div`
   width: 100%;
@@ -82,7 +83,14 @@ const ButtonLogin = styled.div`
   }
 `;
 
+
 const Index = () => {
+  const navigate = useNavigate();
+  const navigateToLogin = () => {
+    console.log("QuizResult -> Login")
+    navigate("/Login")
+  }
+
   return (
     <>
       <ContainerMain>
@@ -90,7 +98,7 @@ const Index = () => {
         <ImageQuizResult />
         <TextResultType>입짧은 두더지</TextResultType>
         <TextResultInfo>입짧은 두더지 설명입니다.</TextResultInfo>
-        <ButtonLogin>로그인 하기</ButtonLogin>
+        <ButtonLogin onClick={navigateToLogin}>로그인 하기</ButtonLogin>
       </ContainerMain>
     </>
   );
