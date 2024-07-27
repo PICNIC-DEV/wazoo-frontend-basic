@@ -17,22 +17,35 @@ const subMessageStyle = {
   flexDirection: 'row-reverse',
 };
 
-const MessageBallon = styled.div`  
-display: flex;
-padding: 24px;
-flex-direction: column;
-justify-content: center;
-align-items: flex-start;
-gap: 10px;  
-border-radius: 20px;
+const MessageBallon = styled.div`
+  display: flex;
   padding: 24px;
-  background-color white; 
-  box-shadow: 0px 0px 4px 4px rgba(0, 0, 0, 0.16);
-#FFFFFF
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 4px;
+  border-radius: 20px;
+  padding: 24px;
+  color: var(--gray-100, #374957);
+  box-shadow: 0px 0px 4px 4px rgba(0, 0, 0, 0.08);
+`;
 
-icon-translate
-Component instance
+const OriginText = styled.div`
+  color: var(--gray-100, #374957);
+  font-family: Pretendard;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+`;
 
+const TranslatedText = styled.div`
+  color: var(--gray-60, #87929a);
+  font-family: Pretendard;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
 `;
 
 const DayTime = styled.div`
@@ -62,12 +75,16 @@ export const formatDate = (timestamp) => {
 
 const Message = (props) => {
   const message = props.item.message;
-  const dateTime = formatDate(props.item.create_at);
-  const isPubMessage = props.item.type == 'pub' ? true : false;
-
+  const translatedMessage = props.item.message; // TODO props 데이터 변경 필요
+  const dateTime = formatDate(6000000000); // TODO 더미 데이터 변경 필요
+  const isPubMessage = props.item.userId != props.userId ? true : false; // NOTE 이건 왜 안됨?
+  console.log('debug : ', props.item.userId, props.userId); // NOTE 콘솔에 찍어보기
   return (
     <MessageContainer style={isPubMessage ? pubMessageStyle : subMessageStyle}>
-      <MessageBallon>{message}</MessageBallon>
+      <MessageBallon>
+        <OriginText>{message}</OriginText>
+        <TranslatedText>{translatedMessage}</TranslatedText>
+      </MessageBallon>
       <DayTime>{dateTime}</DayTime>
     </MessageContainer>
   );

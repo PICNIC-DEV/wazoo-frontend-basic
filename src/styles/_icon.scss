@@ -3,7 +3,14 @@
   height: $height;
   background: no-repeat center/contain url('../assets/icons/#{$name}.svg');
 }
-
+@mixin temp($name, $width: 24px, $height: 24px) {
+  width: $width;
+  height: $height;
+  background: no-repeat center/contain url('../assets/icons/#{$name}.png');
+}
+.icon-cloudy {
+  @include temp('cloudy_icon', 25px, 25px);
+}
 .icon-profile {
   @include icon('profile_icon', 11px, 15px);
 }
@@ -21,6 +28,9 @@
 }
 .icon-logo {
   @include icon('logo_icon', 160px, 32px);
+}
+.icon-logo-large {
+  @include icon('logo_icon', 320px, 64px);
 }
 .icon-picture {
   @include icon('picture_icon', 55px, 55px);
