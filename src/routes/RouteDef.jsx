@@ -1,7 +1,6 @@
 import Main from '../pages/Main';
 import Chat from '../pages/ChatList';
 import ChatRoom from '../pages/ChatRoom';
-import Test from '../pages/Test';
 import GuideApplication from '../pages/GuideApplication';
 import Login from '../pages/Login';
 import Mypage from '../pages/Mypage';
@@ -30,6 +29,14 @@ const MainScreens = {
     path: '/signup',
     element: <SignUp />,
   },
+  Quiz: {
+    path: '/quiz',
+    element: <Quiz />,
+  },
+  QuizResult: {
+    path: '/quizresult',
+    element: <QuizResult />,
+  },
 };
 
 const ChatListScreens = {
@@ -40,10 +47,6 @@ const ChatListScreens = {
   ChatRoom: {
     path: '/chat/:chatId/:userId/:partnerId',
     element: <ChatRoom />,
-  },
-  Test: {
-    path: '/test/:userId/:chatId/:partnerName',
-    element: <Test />,
   },
 };
 

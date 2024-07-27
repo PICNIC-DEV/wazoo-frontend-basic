@@ -79,19 +79,19 @@ export const formatDate = (timestamp) => {
 
 const ChatList = (props) => {
   const item = props.item;
-  const { userId } = useParams();
+  console.log(props.item);
   const navigate = useNavigate();
 
   // ChatList 클릭 시 해당 채팅방 입장
   const handleChatClick = (item) => {
-    navigate(`/chat/${userId}/${item.chat_id}/${item.partner_name}`);
+    navigate(`/chat/${item.chatId}/${item.userId}/${item.partnerId}`);
   };
 
   return (
     <>
       <Item
         onClick={() => {
-          console.log(item.chat_id);
+          console.log(item.chatId);
           handleChatClick(item);
         }}
       >
@@ -102,11 +102,11 @@ const ChatList = (props) => {
             </div>
           </Profile>
           <TextContainer>
-            <Name>{item.partner_name}</Name>
+            <Name>{item.partnerName}</Name>
             <LastChat>{item.message}</LastChat>
           </TextContainer>
         </LeftContainer>
-        <DayTime>{formatDate(item.create_at)}</DayTime>
+        <DayTime>{formatDate(item.createAt)}</DayTime>
       </Item>
     </>
   );

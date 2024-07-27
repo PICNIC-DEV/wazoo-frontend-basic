@@ -24,16 +24,20 @@ const ScreenSection = styled.div`
 
 const dummyData = [
   {
-    chat_id: 1,
-    partner_name: '신혜민',
+    chatId: 1,
+    userId: 1,
+    partnerId: 2,
+    partnerName: '신혜민',
     message: '깊은 산 속 옹달샘 누가 먹고 갔나요',
-    create_at: 2000000000000,
+    createdAt: 2000000000000,
   },
   {
-    chat_id: 2,
-    partner_name: '류금정',
+    chatId: 1,
+    userId: 2,
+    partnerId: 1,
+    partnerName: '류금정',
     message: '맑고 맑은 옹달샘 누가 먹고 갔나요',
-    create_at: 1626876000000,
+    createAt: 1626876000000,
   },
 ];
 
@@ -41,13 +45,14 @@ const Index = () => {
   // const { userId } = useParams();
 
   const items = dummyData;
+  console.log(dummyData);
 
   return (
     <ChatPage>
       <Notification>{'대화 목록'}</Notification>
       <ScreenSection>
-        {items.map((item) => (
-          <ChatList key={item.chat_id} item={item}></ChatList>
+        {items.map((item, idx) => (
+          <ChatList key={idx} item={item}></ChatList>
         ))}
       </ScreenSection>
     </ChatPage>
