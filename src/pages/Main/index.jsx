@@ -74,8 +74,11 @@ const Index = () => {
   ];
 
   useEffect(() => {
-    setIsResult(true);
-  }, [item]);
+    if (item.length != 0) {
+
+      setIsResult(true);
+    }
+  }, [item.length]);
 
   // const setMatchingData = async () => {
   //   setIsResult(true);
@@ -95,11 +98,13 @@ const Index = () => {
             ))}
           </CardContainer>
         )}
-        <CardContainer>
-          {cardList.map((item, index) => (
-            <Card key={'card-' + index} info={item} />
-          ))}
-        </CardContainer>
+        {!isResult &&
+          <CardContainer>
+            {cardList.map((item, index) => (
+              <Card key={'card-' + index} info={item} />
+            ))}
+          </CardContainer>
+        }
       </ScreenSection>
     </MainPage>
   );
