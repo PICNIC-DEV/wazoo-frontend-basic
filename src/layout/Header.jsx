@@ -293,7 +293,10 @@ const Header = () => {
   };
 
   const handleSearchData = () => {
-    const { data } = Instance.get('');
+    const payload = {
+      
+    }
+    const { data } = Instance.post('');
     console.log(data);
   };
 

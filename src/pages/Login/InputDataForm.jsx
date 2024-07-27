@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const ContainerRow = styled.div`
   width: 526px;
@@ -40,14 +40,14 @@ const InputRow = styled.input`
 `;
 
 const InputDataForm = (props) => {
-  return(
+  return (
     <>
       <ContainerRow>
         <TextLabelRow>{props.label}</TextLabelRow>
-        <InputRow placeholder={props.placeholder} required={props.required || false}/>
+        <InputRow placeholder={props.placeholder} required={props.required || false} />
       </ContainerRow>
     </>
   );
-}
+};
 
 export default InputDataForm;

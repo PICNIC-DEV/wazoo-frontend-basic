@@ -1,6 +1,7 @@
 import styled from 'styled-components';
+import { useState } from 'react';
 import { Navigate, useNavigate } from 'react-router-dom';
-import InputDataForm from '../Login/InputDataForm';
+import { Instance } from '../../apis/axiosConfig';
 
 const ContainerMain = styled.div`
   width: 100%;
@@ -49,57 +50,125 @@ const ButtonNext = styled.button`
   line-height: normal;
 `;
 
+const ContainerRow = styled.div`
+  width: 526px;
+  height: 64px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 32;
+  margin-bottom: 16px;
+`;
 
+const TextLabelRow = styled.div`
+  color: var(--gray-60, #87929a);
+  width: 80px;
+  height: 24px;
+  font-family: Pretendard;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  margin-right: 32px;
+`;
+
+const InputRow = styled.input`
+  display: flex;
+  width: 414px;
+  height: 24px;
+  padding: 20px 32px;
+  align-items: center;
+  margin-bottom: 10px;
+
+  border-radius: 40px;
+  border: 1px solid var(--gray-20, #d7dbdd);
+  background: #fff;
+  cursor: pointer;
+  &:hover {
+    opacity: 0.5;
+  }
+`;
 
 const Index = () => {
-  const InputDatas =[
-    {
-      label: "이름",
-      placeholder: "이름을 입력해주세요",
-      required: true
-    },
-    {
-      label: "아이디",
-      placeholder: "아이디를 입력해주세요",
-      required: true
-    },
-    {
-      label: "비밀번호",
-      placeholder: "비밀번호를 입력해주세요",
-      required: true
-    },
-    {
-      label: "주소",
-      placeholder: "주소를 입력해주세요",
-      required: true
-    },
-    {
-      label: "사용 언어",
-      placeholder: "사용 언어를 입력해주세요",
-      required: true
-    }
-  ]
-
-  const LanguageList = [
-
-  ];
+  const [signupForm, setSignupForm] = useState({
+    name: '',
+    login_id: '',
+    login_password: '',
+    address: '',
+    nativeLanguage: '',
+  });
 
   const navigate = useNavigate();
   const navigateToQuiz = () => {
-    console.log("signup -> quiz")
-    navigate("/quiz")
-  }
+    console.log('signup -> quiz');
+    navigate('/quiz');
+  };
+
+  const handleSignupForm = () => {
+    console.log(signupForm);
+    const { data } = Instance.post('/api/user/register', signupForm);
+    console.log(data);
+  };
 
   return (
     <>
       <ContainerMain>
         <TextLabelSignUp>회원가입</TextLabelSignUp>
         <ContainerInfo>
-          {InputDatas.map((item) => (
-            <InputDataForm label={item.label} placeholder={item.placeholder} required={item.required} />
-          ))}
+          <ContainerRow>
+            <TextLabelRow>{'이름'}</TextLabelRow>
+            <InputRow
+              placeholder={'이름을 입력해주세요'}
+              value={signupForm.name}
+              onChange={(event) => {
+                setSignupForm({ ...signupForm, name: event.target.value });
+              }}
+            />
+          </ContainerRow>
+          <ContainerRow>
+            <TextLabelRow>{'아이디'}</TextLabelRow>
+            <InputRow
+              placeholder={'아이디를 입력해주세요'}
+              value={signupForm.login_id}
+              maxLength={15}
+              onChange={(event) => {
+                setSignupForm({ ...signupForm, login_id: event.target.value });
+              }}
+            />
+          </ContainerRow>
+          <ContainerRow>
+            <TextLabelRow>{'비밀번호'}</TextLabelRow>
+            <InputRow
+              placeholder={'비밀번호를 입력해주세요'}
+              value={signupForm.login_password}
+              maxLength={15}
+              onChange={(event) => {
+                setSignupForm({ ...signupForm, login_password: event.target.value });
+              }}
+            />
+          </ContainerRow>
+          <ContainerRow>
+            <TextLabelRow>{'주소'}</TextLabelRow>
+            <InputRow
+              placeholder={'주소를 입력해주세요'}
+              value={signupForm.address}
+              onChange={(event) => {
+                setSignupForm({ ...signupForm, address: event.target.value });
+              }}
+            />
+          </ContainerRow>
+          <ContainerRow>
+            <TextLabelRow>{'사용 언어'}</TextLabelRow>
+            <InputRow
+              placeholder={'사용 언어를 입력해주세요'}
+              value={signupForm.nativeLanguae}
+              onChange={(event) => {
+                setSignupForm({ ...signupForm, nativeLanguage: event.target.value });
+              }}
+            />
+          </ContainerRow>
         </ContainerInfo>
-        <ButtonNext onClick={navigateToQuiz}>다음</ButtonNext>
+        <ButtonNext onClick={handleSignupForm}>다음</ButtonNext>
       </ContainerMain>
     </>
   );
