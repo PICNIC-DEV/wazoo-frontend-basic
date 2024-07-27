@@ -75,10 +75,12 @@ export const formatDate = (timestamp) => {
 
 const Message = (props) => {
   const message = props.item.message;
-  const translatedMessage = props.item.message; // TODO props 데이터 변경 필요
-  const dateTime = formatDate(6000000000); // TODO 더미 데이터 변경 필요
-  const isPubMessage = props.item.userId != props.userId ? true : false; // NOTE 이건 왜 안됨?
-  console.log('debug : ', props.item.userId, props.userId); // NOTE 콘솔에 찍어보기
+  const translatedMessage = props.item.translateMessage;
+  const dateTime = formatDate(props.item.createdAt);
+  console.log(props.item);
+
+  const isPubMessage = props.item.userId != props.userId ? true : false;
+  console.log('debug : ', props.item.userId, props.userId);
   return (
     <MessageContainer style={isPubMessage ? pubMessageStyle : subMessageStyle}>
       <MessageBallon>

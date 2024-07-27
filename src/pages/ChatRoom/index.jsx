@@ -1,3 +1,5 @@
+// index.js (chatroom)
+
 import styled from 'styled-components';
 import { useParams } from 'react-router-dom';
 import Message from '../../components/Message';
@@ -88,7 +90,6 @@ const Chat = () => {
         message: message,
         userId: userId,
         partnerId: partnerId,
-        // createdAt: ,
       };
       stompClient.current.send(`/pub/message`, {}, JSON.stringify(body));
     }
