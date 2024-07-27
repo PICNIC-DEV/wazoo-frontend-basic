@@ -3,16 +3,15 @@ import { createSlice } from '@reduxjs/toolkit';
 const searchSlice = createSlice({
   name: 'search',
   initialState: {
-    userId: null,
-    item: null,
+    item: [],
   },
   reducers: {
     setInfo(state, action) {
-      const { userId } = action.payload;
-      state.userId = userId;
+      const { item } = action.payload;
+      state.item = item;
     },
   },
 });
 
-export const { showModal, hideModal } = searchSlice.actions;
+export const { setInfo } = searchSlice.actions;
 export default searchSlice.reducer;

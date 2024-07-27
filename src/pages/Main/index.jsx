@@ -1,8 +1,9 @@
 import styled from 'styled-components';
 import KakaoMap from '../../components/KakaoMap';
 import Card from '../../components/Card';
-import { useSelector } from 'react-redux';
-import { useState } from 'react';
+// import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { useState, useEffect } from 'react';
 
 const MainPage = styled.div`
   padding-top: 32px;
@@ -38,92 +39,50 @@ const CardContainer = styled.div`
 
 const Index = () => {
   const [isResult, setIsResult] = useState(false);
+  const { item } = useSelector((state) => state.search);
   const cardList = [
     {
       name: '신혜민',
       address: '경기도 남양주시',
-      cost: 1,
+      cost: '₩10000',
     },
     {
       name: '박주광',
       address: '경기도 화성시',
-      cost: 1,
+      cost: '₩20000',
     },
     {
       name: '조동희',
       address: '대전광역시',
-      cost: 1,
+      cost: '₩10000',
     },
     {
       name: '박시은',
       address: '경기도 안양시',
-      cost: 1,
+      cost: '₩30000',
     },
     {
       name: '진명인',
       address: '서울특별시',
-      cost: 1,
+      cost: '₩40000',
     },
     {
       name: '류금정',
       address: '대구광역시',
-      cost: 1,
-    },
-    {
-      name: '류금정',
-      address: '대구광역시',
-      cost: 1,
-    },
-    {
-      name: '류금정',
-      address: '대구광역시',
-      cost: 1,
-    },
-    {
-      name: '류금정',
-      address: '대구광역시',
-      cost: 1,
-    },
-    {
-      name: '류금정',
-      address: '대구광역시',
-      cost: 1,
-    },
-    {
-      name: '류금정',
-      address: '대구광역시',
-      cost: 1,
-    },
-    {
-      name: '류금정',
-      address: '대구광역시',
-      cost: 1,
-    },
-    {
-      name: '류금정',
-      address: '대구광역시',
-      cost: 1,
-    },
-    {
-      name: '류금정',
-      address: '대구광역시',
-      cost: 1,
-    },
-    {
-      name: '류금정',
-      address: '대구광역시',
-      cost: 1,
-    },
-    {
-      name: '류금정',
-      address: '대구광역시',
-      cost: 1,
+      cost: '₩10000',
     },
   ];
 
-  const setMatchingData = async () => {
-    setIsResult(true);
-  };
+  useEffect(() => {
+    if (item.length != 0) {
+
+      setIsResult(true);
+    }
+  }, [item.length]);
+
+  // const setMatchingData = async () => {
+  //   setIsResult(true);
+  // };
 
   return (
     <MainPage>
@@ -132,11 +91,20 @@ const Index = () => {
         <MapContainer>
           <KakaoMap />
         </MapContainer>
-        <CardContainer>
-          {cardList.map((item, index) => (
-            <Card key={'card-' + index} info={item} />
-          ))}
-        </CardContainer>
+        {isResult && (
+          <CardContainer>
+            {item.map((value, index) => (
+              <Card key={'card-' + index} info={value} />
+            ))}
+          </CardContainer>
+        )}
+        {!isResult &&
+          <CardContainer>
+            {cardList.map((item, index) => (
+              <Card key={'card-' + index} info={item} />
+            ))}
+          </CardContainer>
+        }
       </ScreenSection>
     </MainPage>
   );

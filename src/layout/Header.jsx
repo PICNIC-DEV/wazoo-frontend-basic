@@ -7,6 +7,8 @@ import Calendar from '../components/Calendar';
 import GuestSelection from '../components/GuestSelection';
 import usePlacesService from 'react-google-autocomplete/lib/usePlacesAutocompleteService';
 import { Instance } from '../apis/axiosConfig';
+import { useSelector, useDispatch } from 'react-redux';
+import { setInfo } from '../redux/searchSlice';
 
 const HeaderContainer = styled.header`
   width: 100%;
@@ -218,6 +220,8 @@ const Header = () => {
   const { placePredictions, getPlacePredictions } = usePlacesService({
     apiKey: import.meta.env.VITE_GOOGLE_MAPS_API_KEY,
   });
+  const { userId } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
 
   const onSelect = (num) => {
     setIsDateOpen(false);
@@ -293,8 +297,9 @@ const Header = () => {
   };
 
   const handleSearchData = () => {
-    const { data } = Instance.get('');
+    const { data } = Instance.get(`/api/guides/match?activeArea=${searchObj.destination}&travelerUserId=${userId}`);
     console.log(data);
+    dispatch(setInfo({ item: data }));
   };
 
   useEffect(() => {
