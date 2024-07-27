@@ -1,6 +1,6 @@
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
-import { showModal } from '../redux/slice';
+import { showModal } from '../redux/modalSlice';
 
 const Container = styled.div`
   padding: 10px;

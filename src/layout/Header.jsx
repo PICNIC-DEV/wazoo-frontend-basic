@@ -6,6 +6,7 @@ import List from '../components/List';
 import Calendar from '../components/Calendar';
 import GuestSelection from '../components/GuestSelection';
 import usePlacesService from 'react-google-autocomplete/lib/usePlacesAutocompleteService';
+import { Instance } from '../apis/axiosConfig';
 
 const HeaderContainer = styled.header`
   width: 100%;
@@ -291,6 +292,11 @@ const Header = () => {
     }
   };
 
+  const handleSearchData = () => {
+    const { data } = Instance.get('');
+    console.log(data);
+  };
+
   useEffect(() => {
     document.addEventListener('click', handleClickOutside);
 
@@ -330,7 +336,7 @@ const Header = () => {
                 <Title>게스트</Title>
                 <Input>게스트 추가</Input>
               </InputContainer>
-              <SearchButton>
+              <SearchButton onClick={handleSearchData}>
                 <svg className="icon-search" />
               </SearchButton>
               <GuestSelection onSelect={handleGuest} guest={searchObj.guest} isGuestOpen={isGuestOpen} />
