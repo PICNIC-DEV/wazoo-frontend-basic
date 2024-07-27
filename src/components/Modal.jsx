@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
-import { hideModal } from '../redux/slice';
+import { hideModal } from '../redux/modalSlice';
 import GuideInfo from './modal/GuideInfo';
 
 const MODAL_TYPES = {

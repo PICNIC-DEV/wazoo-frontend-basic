@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Navigate, useNavigate } from 'react-router-dom';
+import { Instance } from '../../apis/axiosConfig';
 import styled from 'styled-components';
 
 const ContainerMain = styled.div`
@@ -89,6 +90,7 @@ const ButtonStyleLogin = styled.div`
   font-weight: 700;
   line-height: normal;
   border: 0;
+  cursor: pointer;
 `;
 
 const ButtonStyleSignUp = styled.div`
@@ -108,6 +110,7 @@ const ButtonStyleSignUp = styled.div`
   font-weight: 700;
   line-height: normal;
   border: 0;
+  cursor: pointer;
 `;
 
 const Index = () => {
@@ -115,26 +118,28 @@ const Index = () => {
   const [pw, setPw] = useState(false);
 
   const handleChangeId = (event) => {
-    console.log(event.target.value)
-    setId(event.target.value)
-  }
+    console.log(event.target.value);
+    setId(event.target.value);
+  };
 
   const handleChangePw = (event) => {
-    console.log(event.target.value)
-    setPw(event.target.value)
-  }
-  
+    console.log(event.target.value);
+    setPw(event.target.value);
+  };
+
   const navigate = useNavigate();
   const navigateToSignup = () => {
-    console.log("login -> signup")
-    navigate("/signup")
-  }
+    console.log('login -> signup');
+    navigate('/signup');
+  };
 
   const submitForm = () => {
-    console.log('================')
-    console.log(`id : ${id}`)
-    console.log(`pw : ${pw}`)
-  }
+    const { data } = Instance.get('');
+    console.log(data);
+    console.log('================');
+    console.log(`id : ${id}`);
+    console.log(`pw : ${pw}`);
+  };
 
   return (
     <>
@@ -145,8 +150,8 @@ const Index = () => {
           </ContainerLogoImage>
           <ContainerLogoTitle>토박이 가이드 매칭 서비스</ContainerLogoTitle>
         </ContainerLogoBox>
-        <InputRow placeholder='아이디를 입력하세요' onChange={handleChangeId} />
-        <InputRow placeholder='비밀번호를 입력하세요' onChange={handleChangePw} />
+        <InputRow placeholder="아이디를 입력하세요" onChange={handleChangeId} maxlength="10" />
+        <InputRow placeholder="비밀번호를 입력하세요" onChange={handleChangePw} maxlength="10" />
         <ContainerButtons>
           <ButtonStyleLogin onClick={submitForm}>로그인</ButtonStyleLogin>
           <ButtonStyleSignUp onClick={navigateToSignup}>회원가입</ButtonStyleSignUp>

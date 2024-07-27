@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { useSelector } from 'react-redux';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { Instance } from '../../apis/axiosConfig';
 
 const Container = styled.div``;
 const Info = styled.div`
@@ -186,6 +187,18 @@ const GuideInfo = () => {
     },
   ];
   const [temperature, setTemperature] = useState('icon-cloudy');
+  const [guideInfo, setGuideInfo] = useState({});
+  // const {  } = useSelector((state) => state.user);
+
+  const getGuideInfo = () => {
+    const { data } = Instance.get();
+    console.log(data);
+    setGuideInfo(data);
+  };
+
+  useEffect(() => {
+    getGuideInfo();
+  }, []);
 
   return (
     <Container>

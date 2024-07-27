@@ -4,9 +4,10 @@ const createInstance = () => {
   const instance = axios.create({
     baseURL: '/api',
     headers: {
+      'Content-Type': 'application/json',
       'Cache-Control': 'no-cache',
-      Pragma: 'no-cache',
-      Expires: '0',
+      'ngrok-skip-browser-warning': '69420',
+      'Access-Control-Allow-Credentials': true,
     },
   });
   instance.interceptors.request.use(
