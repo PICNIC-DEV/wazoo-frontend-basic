@@ -134,8 +134,40 @@ const Index = () => {
   };
 
   const submitForm = () => {
-    const { data } = Instance.get('');
+    const loginData = {
+      login_id: id,
+      login_password: pw
+    }
+    // get('localhost:5174')
+    // .then(function(response) {})
+    // .catch(fucntion(error) {})
+    // .then(function() {})
+    const { data } = Instance.post('/api/user/login', loginData)
+    .then(function(response){
+      //response
+    }).catch(function(error) {
+      //error
+    }).then(function() {
+      //항상 실행 
+    });
+
+    // 로그인 성공 
+    if(data.message){
+      const navigate = useNavigate();
+      navigate("/")  
+    }
+    
+
+    // const {data} = fetch("URL", {
+    //   method: "POST",
+    //   body: JSON.stringify({
+    //     userid: "test",
+    //     body: "testing",
+    //   }),
+    // })
+    // .then((response)=>response.json())
     console.log(data);
+    alert(data)
     console.log('================');
     console.log(`id : ${id}`);
     console.log(`pw : ${pw}`);
@@ -151,7 +183,7 @@ const Index = () => {
           <ContainerLogoTitle>토박이 가이드 매칭 서비스</ContainerLogoTitle>
         </ContainerLogoBox>
         <InputRow placeholder="아이디를 입력하세요" onChange={handleChangeId} maxlength="10" />
-        <InputRow placeholder="비밀번호를 입력하세요" onChange={handleChangePw} maxlength="10" />
+        <InputRow type="password" placeholder="비밀번호를 입력하세요" onChange={handleChangePw} maxlength="10" />
         <ContainerButtons>
           <ButtonStyleLogin onClick={submitForm}>로그인</ButtonStyleLogin>
           <ButtonStyleSignUp onClick={navigateToSignup}>회원가입</ButtonStyleSignUp>

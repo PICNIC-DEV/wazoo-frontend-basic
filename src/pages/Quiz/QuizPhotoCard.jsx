@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const ContainerPhotoCard = styled.div`
-  width: 240px;
+  width: 400px;
   height: auto;
   display: flex;
   flex-direction: column;
@@ -12,6 +12,7 @@ const ContainerPhotoCard = styled.div`
   }
 `;
 
+// -- 0727 -- 카드 + 이미지
 const PhotoCard = styled.div`
   display: flex;
   width: 240px;
@@ -24,23 +25,31 @@ const PhotoCard = styled.div`
   background: var(--gray-20, #d7dbdd);
   background-image: URL;
   margin-bottom: 10px;
-`;
 
-const PhotoInfo = styled.div`
-  color: var(--gray-100, #374957);
+  color: var(--gray-100, white);
   text-align: center;
   font-family: Pretendard;
-  font-size: 20px;
+  font-size: 35px;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
 `;
 
+// const PhotoInfo = styled.div`
+//   color: var(--gray-100, #374957);
+//   text-align: center;
+//   font-family: Pretendard;
+//   font-size: 20px;
+//   font-style: normal;
+//   font-weight: 500;
+//   line-height: normal;
+// `;
+
 const QuizPhotoCard = (props) => {
  return(
   <ContainerPhotoCard onClick={props.onClick || null}>
-    <PhotoCard link={props.url || null} />
-    <PhotoInfo>{props.message || null}</PhotoInfo>
+    <PhotoCard background={props.bColor} link={props.url || null}>{props.message}</PhotoCard>
+    {/* <PhotoInfo>{props.message || null}</PhotoInfo> */}
   </ContainerPhotoCard>
  );   
 }
